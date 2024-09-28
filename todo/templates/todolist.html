@@ -1,6 +1,16 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Login</h1>
+<h1>Todolist</h1>
+{{todolist}}
+
+{% for todo in todos %}
+<ul>
+    <h2>{{todo.title}}</h2>
+    <li>{{todo.text}}</li>
+    <li>{{todo.created}}</li>
+    <li>{{todo.important}}</li>
+</ul>
+{% endfor %}
 
 {% endblock %}
