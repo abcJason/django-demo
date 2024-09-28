@@ -1,43 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-Hant">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
         #navbar {
-            background-color:rgb(150,150,255);
-            padding: 12 px;
+            background-color: rgb(150, 150, 255);
+            padding: 12px;
         }
+
         .username {
-            color:yellow;
+            color: yellow;
         }
+
         .button {
             display: inline-block;
-            background-color:orange;
-            text-align:center;
-            padding: 6 px;
-            width:60px;
-            text-decoration:none;
-            border-radius:3px;
-            margin-left:12px;
+            background: orange;
+            text-align: center;
+            padding: 6px;
+            width: 60px;
+            text-decoration: none;
+            border-radius: 3px;
+            margin-left: 12px;
         }
     </style>
 </head>
 
 <body>
     <div id="navbar">
-        {% if user.is_authenticated %} 
-        使用者名稱:<span class="username">{{user.username}}</span>
-        <a class="button" style="background-color:red;color:white" href="{% url 'logout' %}">登出</a>
+        {% if user.is_authenticated %}
+        使用者:<span class="username"> {{user.username}}</span>
+
+        <a class="button" style="background-color: red;color:white" href="{% url 'logout' %}">登出</a>
         {% else %}
-        <a class="button" style="background-color:aqua" href="{% url 'login' %}">登入</a>
+        <a class="button" style="background-color: aqua;" href="{% url 'login' %}">登入</a>
         <a class="button" href="{% url 'register' %}">註冊</a>
-        <a class="button" style="background-color:white" href="/">回首頁</a>
+        {% endif %}
+        <a class="button" style="background-color: white;" href="/">回首頁</a>
     </div>
-    {% endif %} 
-    
     {% block content %}
 
     {% endblock %}

@@ -3,8 +3,7 @@
 {% block content %}
 <h1>Profile</h1>
 
-
-{% if user.is_authenticated %} 
+{% if user.is_authenticated %}
 <ul>
     <li>超級使用者:
         {% if user.is_superuser %}
@@ -17,6 +16,6 @@
     <li>加入時間:{{user.date_joined}}</li>
 </ul>
 {% else %}
-<h2 style="color:red">請先登入或註冊</h2>
-{% endif %} 
+<h3>請先登入或註冊...</h3>
+{% endif %}
 {% endblock %}

@@ -17,7 +17,7 @@ def user_profile(request):
 def user_login(request):
     message = ""
     user = None
-    username=request.session.get("username","")
+    username = request.session.get("username", "")
 
     if request.method == "POST":
         if request.POST.get("register"):
@@ -38,7 +38,11 @@ def user_login(request):
                 else:
                     message = "帳號或密碼錯誤!"
 
-    return render(request, "user/login.html", {"message": message, "user": user, "username":username})
+    return render(
+        request,
+        "user/login.html",
+        {"message": message, "user": user, "username": username},
+    )
 
 
 def user_register(request):
@@ -54,7 +58,7 @@ def user_register(request):
         password2 = request.POST.get("password2")
 
         # 密碼長度8
-        if len(password1) < 8 or len(password2) < 8:
+        if len(password1) != 8 or len(password2) != 8:
             message = "密碼長度不正確"
         elif password1 != password2:
             message = "兩次密碼不一樣"
@@ -67,7 +71,7 @@ def user_register(request):
                 user = User.objects.create_user(username=username, password=password1)
                 user.save()
                 message = "註冊成功!"
-                request.session["username"]=user.username
+                request.session["username"] = user.username
                 return redirect("login")
 
     return render(request, "user/register.html", {"form": form, "message": message})
